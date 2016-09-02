@@ -1,15 +1,10 @@
-package com.dwls.utility;
 /**
  * 
  */
+package com.dwls.utility;
 
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
-//import org.apache.tomcat.jdbc.pool.DataSource;
-//import org.apache.tomcat.jdbc.pool.PoolProperties;
+import org.apache.tomcat.jdbc.pool.DataSource;
+import org.apache.tomcat.jdbc.pool.PoolProperties;
 
 
 /**
@@ -18,17 +13,18 @@ import java.sql.SQLException;
  */
 public class GlobalResource {
 
-	private static Connection connection = null;
+	//private static Connection connection = null;
 	
-	//private static DataSource datasource = null;
+	private static DataSource datasource = null;
 
 
-	public static Connection getConnection()
+	/*public static Connection getConnection()
 	{
 		try {
+			if(connection==null){
 				Class.forName("org.postgresql.Driver");
 				connection=DriverManager.getConnection("jdbc:postgresql://localhost:5432/dwls","dwls","dwls");	
-			
+			}
 		} catch (SQLException exception) {
 			System.out.println("Not able to connect to the Database "+exception.getMessage());
 			exception.printStackTrace();
@@ -37,9 +33,9 @@ public class GlobalResource {
 			e.printStackTrace();
 		}
 		return connection;
-	}
+	}*/
 
-	/*public static DataSource getDatasource()
+	public static DataSource getDatasource()
 	{
 		if(datasource==null){
 			PoolProperties poolProperties = new PoolProperties();
@@ -50,10 +46,10 @@ public class GlobalResource {
 			poolProperties.setUsername("dwls");
 			poolProperties.setPassword("dwls");
 
-			//Testing environment database connection details
+			/*//Testing environment database connection details
 			poolProperties.setUrl("jdbc:mysql://localhost:3306/ht_test");
 			poolProperties.setUsername("ht_test");
-			poolProperties.setPassword("ht");
+			poolProperties.setPassword("ht");*/
 
 			poolProperties.setJmxEnabled(true);
 			poolProperties.setTestWhileIdle(false);
@@ -78,5 +74,5 @@ public class GlobalResource {
 		}
 		return datasource;
 	}
-*/
+
 }

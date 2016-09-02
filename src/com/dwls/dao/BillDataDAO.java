@@ -142,7 +142,7 @@ public class BillDataDAO {
 		int lastInsertedId = -1;
 		if(billData != null){
 			try(
-					Connection connection = GlobalResource.getConnection();
+					Connection connection = GlobalResource.getDatasource().getConnection();
 					PreparedStatement ps = connection.prepareStatement(
 							"INSERT INTO bill_data("+DIV_NAME+"," +TARIFF+"," +LOC_CODE_1+"," +GROUP_NO_1+"," +READER_NO_1+"," +CONS_NO_1+"," +BILL_MONTH_1+"," +BILL_NO_1+"," +BILL_DATE+"," +TOT_UNITS_1+"," +CONS_NAME_1+"," +ADDR_1+"," +NET_BILL_1+"," +ADDR_2+"," +ADDR_3+"," +PHONE_1+"," +MOBILE+"," +CHQ_DATE_1+"," +CSH_DATE_1+"," +POLE+"," +METER_NO+"," +PHASE+"," +RDG_DATE+"," +CONN_LOAD+"," +LOAD_UNIT+"," +RDG_TYPE+"," +CONT_DEM+"," +MAX_DEM+"," +RDG_CURR+"," +RDG_PRE+"," +MF+"," +PF+"," +MTR_UNITS+"," +ASS_UNITS+"," +TOT_UNITS_2+"," +TOD_UNITS+"," +LOC_NAME+"," +LOC_ADDR_1+"," +ENCH+"," +LOC_ADDR_2+"," +FXCH+"," +LOC_PHONE+"," +DUTY+"," +CESS+"," +RENT+"," +OFFR_NAME+"," +ADJMT+"," +OFFR_PHONE+"," +SD_INST+"," +CAP_SCH+"," +DE_NAME+"," +PENAL_CH+"," +DE_PHONE+"," +TOD_SCH+"," +PURPOSE+"," +SEC_DEP+"," +OCH+"," +BILL_TYPE+"," +SD_DUE+"," +ADV_AMT+"," +SD_INT+"," +PRE_PYMT_HDR+"," +LF_REBATE+"," +CASH_MSG_1+"," +LOCK_CR+"," +CASH_MSG_2+"," +SUBSIDY+"," +CASH_MSG_3+"," +MONTH_BILL+"," +ARRS+"," +NET_BILL_2+"," +MONTH_1+"," +RDG_DATE_1+"," +RDG_1+"," +SURCH+"," +MONTH_2+"," +RDG_DATE_2+"," +RDG_2+"," +NET_INCL_SURCH_1+"," +MONTH_3+"," +RDG_DATE_3+"," +RDG_3+"," +MONTH_4+"," +RDG_DATE_4+"," +RDG_4+"," +MONTH_5+"," +RDG_DATE_5+"," +RDG_5+"," +MONTH_6+"," +RDG_DATE_6+"," +RDG_6+"," +AVG_1+"," +AVG_2+"," +CIR_NAME_2+"," +BILL_MSG_1+"," +BILL_MSG_2+"," +BILL_MSG_3+"," +BILL_MSG_4+"," +BILL_MSG_5+"," +SCRN_MSG+"," +BILL_MONTH_2+"," +BILL_NO_2+"," +LOC_COD_2+"," +GROUP_NO_2+"," +READER_NO_2+"," +CONS_NO_2+"," +CONS_NAME_2+"," +CHQ_DATE_2+"," +CSH_DATE_2+"," +NET_BILL_3+"," +NET_INCL_SURCH_2+"," +OLD_CONS_NO+"," +SURCHARGE_DEMAND+"," +PREV_PENDING_AMNT+"," +MTR_READER_NAME+")"
 									+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
@@ -278,6 +278,146 @@ public class BillDataDAO {
 		return insertedBillData;
 	}
 	
+	
+	public BillData update(BillData billData){
+		BillData insertedBillData = null;
+		if(billData != null){
+			try(
+					Connection connection = GlobalResource.getDatasource().getConnection();
+					PreparedStatement ps = connection.prepareStatement(
+							"update bill_data set "+DIV_NAME+"=?," +TARIFF+"=?," +LOC_CODE_1+"=?," +GROUP_NO_1+"=?," +READER_NO_1+"=?," +CONS_NO_1+"=?," +BILL_MONTH_1+"=?," +BILL_NO_1+"=?," +BILL_DATE+"=?," +TOT_UNITS_1+"=?," +CONS_NAME_1+"=?," +ADDR_1+"=?," +NET_BILL_1+"=?," +ADDR_2+"=?," +ADDR_3+"=?," +PHONE_1+"=?," +MOBILE+"=?," +CHQ_DATE_1+"=?," +CSH_DATE_1+"=?," +POLE+"=?," +METER_NO+"=?," +PHASE+"=?," +RDG_DATE+"=?," +CONN_LOAD+"=?," +LOAD_UNIT+"=?," +RDG_TYPE+"=?," +CONT_DEM+"=?," +MAX_DEM+"=?," +RDG_CURR+"=?," +RDG_PRE+"=?," +MF+"=?," +PF+"=?," +MTR_UNITS+"=?," +ASS_UNITS+"=?," +TOT_UNITS_2+"=?," +TOD_UNITS+"=?," +LOC_NAME+"=?," +LOC_ADDR_1+"=?," +ENCH+"=?," +LOC_ADDR_2+"=?," +FXCH+"=?," +LOC_PHONE+"=?," +DUTY+"=?," +CESS+"=?," +RENT+"=?," +OFFR_NAME+"=?," +ADJMT+"=?," +OFFR_PHONE+"=?," +SD_INST+"=?," +CAP_SCH+"=?," +DE_NAME+"=?," +PENAL_CH+"=?," +DE_PHONE+"=?," +TOD_SCH+"=?," +PURPOSE+"=?," +SEC_DEP+"=?," +OCH+"=?," +BILL_TYPE+"=?," +SD_DUE+"=?," +ADV_AMT+"=?," +SD_INT+"=?," +PRE_PYMT_HDR+"=?," +LF_REBATE+"=?," +CASH_MSG_1+"=?," +LOCK_CR+"=?," +CASH_MSG_2+"=?," +SUBSIDY+"=?," +CASH_MSG_3+"=?," +MONTH_BILL+"=?," +ARRS+"=?," +NET_BILL_2+"=?," +MONTH_1+"=?," +RDG_DATE_1+"=?," +RDG_1+"=?," +SURCH+"=?," +MONTH_2+"=?," +RDG_DATE_2+"=?," +RDG_2+"=?," +NET_INCL_SURCH_1+"=?," +MONTH_3+"=?," +RDG_DATE_3+"=?," +RDG_3+"=?," +MONTH_4+"=?," +RDG_DATE_4+"=?," +RDG_4+"=?," +MONTH_5+"=?," +RDG_DATE_5+"=?," +RDG_5+"=?," +MONTH_6+"=?," +RDG_DATE_6+"=?," +RDG_6+"=?," +AVG_1+"=?," +AVG_2+"=?," +CIR_NAME_2+"=?," +BILL_MSG_1+"=?," +BILL_MSG_2+"=?," +BILL_MSG_3+"=?," +BILL_MSG_4+"=?," +BILL_MSG_5+"=?," +SCRN_MSG+"=?," +BILL_MONTH_2+"=?," +BILL_NO_2+"=?," +LOC_COD_2+"=?," +GROUP_NO_2+"=?," +READER_NO_2+"=?," +CONS_NO_2+"=?," +CONS_NAME_2+"=?," +CHQ_DATE_2+"=?," +CSH_DATE_2+"=?," +NET_BILL_3+"=?," +NET_INCL_SURCH_2+"=?," +OLD_CONS_NO+"=?," +SURCHARGE_DEMAND+"=?," +PREV_PENDING_AMNT+"=?," +MTR_READER_NAME+"=?"
+									+"where id = ?");
+					) {
+			    ps.setString(1, billData.getDivName()); 
+				ps.setString(2, billData.getTariff()); 
+				ps.setString(3, billData.getLocCode1()); 
+				ps.setString(4, billData.getGroupNo1());
+				ps.setString(5, billData.getReaderNo1()); 
+				ps.setString(6, billData.getConsNo1()); 
+				ps.setString(7, billData.getBillMonth1()); 
+				ps.setString(8, billData.getBillNo1()); 
+				ps.setString(9, billData.getBillDate()); 
+				ps.setString(10, billData.getTotUnits1()); 
+				ps.setString(11, billData.getConsName1()); 
+				ps.setString(12, billData.getAddr1()); 
+				ps.setString(13, billData.getNetBill1()); 
+				ps.setString(14, billData.getAddr2()); 
+				ps.setString(15, billData.getAddr3()); 
+				ps.setString(16, billData.getPhone1()); 
+				ps.setString(17, billData.getMobile()); 
+				ps.setString(18, billData.getChqDate1()); 
+				ps.setString(19, billData.getCshDate1()); 
+				ps.setString(20, billData.getPole()); 
+				ps.setString(21, billData.getMeterNo()); 
+				ps.setString(22, billData.getPhase()); 
+				ps.setString(23, billData.getRdgDate()); 
+				ps.setString(24, billData.getConnLoad()); 
+				ps.setString(25, billData.getLoadUnit()); 
+				ps.setString(26, billData.getRdgType()); 
+				ps.setString(27, billData.getContDem()); 
+				ps.setString(28, billData.getMaxDem()); 
+				ps.setString(29, billData.getRdgCurr()); 
+				ps.setString(30, billData.getRdgPre()); 
+				ps.setString(31, billData.getMf()); 
+				ps.setString(32, billData.getPf()); 
+				ps.setString(33, billData.getMtrUnits()); 
+				ps.setString(34, billData.getAssUnits()); 
+				ps.setString(35, billData.getTotUnits2()); 
+				ps.setString(36, billData.getTodUnits()); 
+				ps.setString(37, billData.getLocName()); 
+				ps.setString(38, billData.getLocAddr1()); 
+				ps.setString(39, billData.getEnch()); 
+				ps.setString(40, billData.getLocAddr2()); 
+				ps.setString(41, billData.getFxch()); 
+				ps.setString(42, billData.getLocPhone()); 
+				ps.setString(43, billData.getDuty()); 
+				ps.setString(44, billData.getCess()); 
+				ps.setString(45, billData.getRent()); 
+				ps.setString(46, billData.getOffrName()); 
+				ps.setString(47, billData.getAdjmt()); 
+				ps.setString(48, billData.getOffPhone()); 
+				ps.setString(49, billData.getSdInst()); 
+				ps.setString(50, billData.getCapSch()); 
+				ps.setString(51, billData.getDeName()); 
+				ps.setString(52, billData.getPenalCh()); 
+				ps.setString(53, billData.getDePhone()); 
+				ps.setString(54, billData.getTodSch()); 
+				ps.setString(55, billData.getPurpose()); 
+				ps.setString(56, billData.getSecDep()); 
+				ps.setString(57, billData.getOch()); 
+				ps.setString(58, billData.getBillType()); 
+				ps.setString(59, billData.getSdDue()); 
+				ps.setString(60, billData.getAdvAmt()); 
+				ps.setString(61, billData.getSdInt()); 
+				ps.setString(62, billData.getPrePymtHdr()); 
+				ps.setString(63, billData.getLfRebate()); 
+				ps.setString(64, billData.getCashMsg1()); 
+				ps.setString(65, billData.getLockCr()); 
+				ps.setString(66, billData.getCashMsg2()); 
+				ps.setString(67, billData.getSubsidy());
+				ps.setString(68, billData.getCashMsg3()); 
+				ps.setString(69, billData.getMonthBill()); 
+				ps.setString(70, billData.getArrs()); 
+				ps.setString(71, billData.getNetBill2()); 
+				ps.setString(72, billData.getMonth1()); 
+				ps.setString(73, billData.getRdgDate1()); 
+				ps.setString(74, billData.getRdg1()); 
+				ps.setString(75, billData.getSurch()); 
+				ps.setString(76, billData.getMonth2()); 
+				ps.setString(77, billData.getRdgDate2()); 
+				ps.setString(78, billData.getRdg2()); 
+				ps.setString(79, billData.getNetInclSurch1()); 
+				ps.setString(80, billData.getMonth3()); 
+				ps.setString(81, billData.getRdgDate3()); 
+				ps.setString(82, billData.getRdg3()); 
+				ps.setString(83, billData.getMonth4()); 
+				ps.setString(84, billData.getRdgDate4()); 
+				ps.setString(85, billData.getRdg4()); 
+				ps.setString(86, billData.getMonth5()); 
+				ps.setString(87, billData.getRdgDate5()); 
+				ps.setString(88, billData.getRdg5()); 
+				ps.setString(89, billData.getMonth6()); 
+				ps.setString(90, billData.getRdgDate6());
+				ps.setString(91, billData.getRdg6()); 
+				ps.setString(92, billData.getAvg1()); 
+				ps.setString(93, billData.getAvg2()); 
+				ps.setString(94, billData.getCirName2()); 
+				ps.setString(95, billData.getBillMsg1()); 
+				ps.setString(96, billData.getBillMsg2()); 
+				ps.setString(97, billData.getBillMsg3()); 
+				ps.setString(98, billData.getBillMsg4()); 
+				ps.setString(99, billData.getBillMsg5()); 
+				ps.setString(100, billData.getScrnMsg()); 
+				ps.setString(101, billData.getBillMonth2()); 
+				ps.setString(102, billData.getBillNo2()); 
+				ps.setString(103, billData.getLocCod2()); 
+				ps.setString(104, billData.getGroupNo2()); 
+				ps.setString(105, billData.getReaderNo2()); 
+				ps.setString(106, billData.getConsNo2()); 
+				ps.setString(107, billData.getConsName2()); 
+				ps.setString(108, billData.getChqDate2()); 
+				ps.setString(109, billData.getCshDate2()); 
+				ps.setString(110, billData.getNetBill3()); 
+				ps.setString(111, billData.getNetInclSurch2()); 
+				ps.setString(112, billData.getOldConsNo()); 
+				ps.setString(113, billData.getSurchargeDemand()); 
+				ps.setString(114, billData.getPrevPendingAmnt()); 
+				ps.setString(115, billData.getMtrReaderName());
+				ps.setInt(116, billData.getId());
+				ps.executeUpdate();
+				/*ResultSet keys = ps.getGeneratedKeys();
+				keys.next();
+				lastInsertedId = keys.getInt(1);
+				insertedBillData = getById(lastInsertedId);*/
+			}  catch (Exception exception) {
+				insertedBillData = null;
+				System.out.println("Exception in class : BillDataDAO : method : [update(BillData)] "
+						+ exception.getMessage());
+			}
+		}
+		return insertedBillData;
+	}
+	
 	public ArrayList<BillData> insertAll(ArrayList<BillData> recordsToInsert){
 		ArrayList<BillData> insertedRecords = new ArrayList<BillData>();
 		if(recordsToInsert != null){
@@ -294,7 +434,7 @@ public class BillDataDAO {
 	public BillData getById(int id){
 		ArrayList<BillData> billDataList = new ArrayList<BillData>();
 		try(
-				Connection connection = GlobalResource.getConnection();
+				Connection connection = GlobalResource.getDatasource().getConnection();
 				PreparedStatement ps = connection.prepareStatement(
 						"select * from bill_data where "+ID+" =?");){
 			ps.setInt(1,id);
@@ -307,13 +447,32 @@ public class BillDataDAO {
 		}
 		return billDataList.size() > 0 ? billDataList.get(0):null;
 	}
+	
+	public BillData getByBillDataHeader(){
+		ArrayList<BillData> billDataList = new ArrayList<BillData>();
+		try(
+				Connection connection = GlobalResource.getDatasource().getConnection();
+				PreparedStatement ps = connection.prepareStatement(
+						"select * from bill_data where "+DIV_NAME+" like '%DIV_NAME%'");){
+			//ps.setInt(1,"DIV_NAME");
+			ResultSet rs = ps.executeQuery();
+			billDataList = mapper(rs);
+		} catch (SQLException e) {
+			System.out.println("Exception in class : BillDataDAO : method : [getById(int)] "
+					+ e.getMessage());
+			e.printStackTrace();
+		}
+		return billDataList.size() > 0 ? billDataList.get(0):null;
+	}
+	
+	
 	public ArrayList<BillData> getAll(){
 		ArrayList<BillData> billDataList = new ArrayList<BillData>();
 		ResultSet rs = null;
 		try(
-				Connection connection = GlobalResource.getConnection();
+				Connection connection = GlobalResource.getDatasource().getConnection();
 				PreparedStatement ps = connection.prepareStatement(
-						"select * from bill_data");){
+						"select * from bill_data where "+DIV_NAME+" not like '%DIV_NAME%'");){
 			rs = ps.executeQuery();
 			billDataList = mapper(rs);
 		} catch (SQLException e) {
@@ -323,10 +482,22 @@ public class BillDataDAO {
 		}
 		return billDataList;
 	}
+	
+	public void deleteAll(){
+		try(
+				Connection connection = GlobalResource.getDatasource().getConnection();
+				PreparedStatement ps = connection.prepareStatement(
+						"delete from bill_data");){
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public ArrayList<BillData> getByLocationAndBillMonth( String locationCode, String groupNo, String date){
 		ArrayList<BillData> billDataList = new ArrayList<BillData>();
 		try(
-				Connection connection = GlobalResource.getConnection();
+				Connection connection = GlobalResource.getDatasource().getConnection();
 				PreparedStatement ps = connection.prepareStatement(
 						"select * from bill_data where "+LOC_CODE_1+" = ? and "+GROUP_NO_1+" = ? and "+BILL_MONTH_1+" = ?");){
 			ps.setString(1, locationCode);
