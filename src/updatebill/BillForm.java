@@ -5,9 +5,17 @@
  */
 package updatebill;
 
-import com.dwls.utility.BillFileParser;
+//import com.dwls.utility.BillFileParser;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.Toolkit;
 import java.io.File;
+import java.io.IOException;
+
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
+import com.dwls.utility.BillFileParser;
 
 /**
  *
@@ -20,6 +28,16 @@ public class BillForm extends javax.swing.JFrame {
      */
     public BillForm() {
         initComponents();
+        Dimension screenSize =Toolkit.getDefaultToolkit().getScreenSize();
+        Insets scnMax = Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
+        int taskBarSize =scnMax.bottom;
+        int w=(int)getWidth();
+        int h=(int)getHeight();
+        setBounds((screenSize.width-w), (screenSize.height-h-taskBarSize), w, h);
+        jButton1.requestFocus();
+        jButton2.setEnabled(false);
+        jButton3.setEnabled(false);
+       
     }
 
     /**
@@ -33,13 +51,44 @@ public class BillForm extends javax.swing.JFrame {
 
         jFileChooser1 = new javax.swing.JFileChooser();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("MPPKVVCL UPDATE BILL FILE");
+        setAlwaysOnTop(true);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("MPEB.png")));
+        setResizable(false);
 
-        jButton1.setText("Update File");
+        jButton1.setText("Upload File");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Update Bill Data");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Generate File");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jTextField1.setEditable(false);
+        jTextField1.setFont(new java.awt.Font("Tahoma",1,18));
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField1.setText("Bill File updater");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
             }
         });
 
@@ -47,17 +96,31 @@ public class BillForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(143, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(199, 199, 199))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)))
+                .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(137, 137, 137)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         pack();
@@ -66,22 +129,67 @@ public class BillForm extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         
+        try{
+            
         
-  JFileChooser fileChooser = new JFileChooser();
+        JFileChooser fileChooser = new JFileChooser();
+        
         int returnValue = fileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
+           
           File selectedFile = fileChooser.getSelectedFile();
           //System.out.println(selectedFile.getAbsoluteFile());
+          if(selectedFile != null){
           BillFileParser b=new BillFileParser();
+          b.readFile(selectedFile.getAbsolutePath());
+          JOptionPane.showMessageDialog(null, "Bill File upload Success!");
+          jButton2.setEnabled(true);
+          jButton2.requestFocus();
+          jButton1.setEnabled(false);
+          }else{
+        	  JOptionPane.showMessageDialog(null, "Please select a valid file!");
+          } 
+        }
+       
         
-        b.readFile(selectedFile.getAbsolutePath());
+        }
+        catch(Exception e)
+        {
+        JOptionPane.showMessageDialog(null,e.getMessage());
         
+        }
         
+    }                                        
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+    }                                           
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        BillFileParser b=new BillFileParser();
         b.updateBillFile();
-        
-        b.writeBillFile(selectedFile.getName());
-          
-          
+        JOptionPane.showMessageDialog(null, "Updation Successful!");
+        jButton3.setEnabled(true);
+        jButton2.requestFocus();
+        jButton1.setEnabled(false);
+        jButton2.setEnabled(false);
+    }                                        
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        JFileChooser fileChooser = new JFileChooser(); 
+        int returnValue = fileChooser.showOpenDialog(null); 
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+        File selectedFile = fileChooser.getSelectedFile();
+         BillFileParser b=new BillFileParser();
+        try {
+			b.writeBillFile(selectedFile.getAbsolutePath());
+			JOptionPane.showMessageDialog(null, "File generated successfully..");
+			jButton3.setEnabled(false);
+	        jButton1.setEnabled(true);
+	        jButton2.setEnabled(false);
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null,"Not able to write the file please check");
+		}
         }
     }                                        
 
@@ -122,6 +230,9 @@ public class BillForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration                   
 }

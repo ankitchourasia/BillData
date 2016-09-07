@@ -144,7 +144,7 @@ public class BillDataDAO {
 			try(
 					Connection connection = GlobalResource.getDatasource().getConnection();
 					PreparedStatement ps = connection.prepareStatement(
-							"INSERT INTO bill_data("+DIV_NAME+"," +TARIFF+"," +LOC_CODE_1+"," +GROUP_NO_1+"," +READER_NO_1+"," +CONS_NO_1+"," +BILL_MONTH_1+"," +BILL_NO_1+"," +BILL_DATE+"," +TOT_UNITS_1+"," +CONS_NAME_1+"," +ADDR_1+"," +NET_BILL_1+"," +ADDR_2+"," +ADDR_3+"," +PHONE_1+"," +MOBILE+"," +CHQ_DATE_1+"," +CSH_DATE_1+"," +POLE+"," +METER_NO+"," +PHASE+"," +RDG_DATE+"," +CONN_LOAD+"," +LOAD_UNIT+"," +RDG_TYPE+"," +CONT_DEM+"," +MAX_DEM+"," +RDG_CURR+"," +RDG_PRE+"," +MF+"," +PF+"," +MTR_UNITS+"," +ASS_UNITS+"," +TOT_UNITS_2+"," +TOD_UNITS+"," +LOC_NAME+"," +LOC_ADDR_1+"," +ENCH+"," +LOC_ADDR_2+"," +FXCH+"," +LOC_PHONE+"," +DUTY+"," +CESS+"," +RENT+"," +OFFR_NAME+"," +ADJMT+"," +OFFR_PHONE+"," +SD_INST+"," +CAP_SCH+"," +DE_NAME+"," +PENAL_CH+"," +DE_PHONE+"," +TOD_SCH+"," +PURPOSE+"," +SEC_DEP+"," +OCH+"," +BILL_TYPE+"," +SD_DUE+"," +ADV_AMT+"," +SD_INT+"," +PRE_PYMT_HDR+"," +LF_REBATE+"," +CASH_MSG_1+"," +LOCK_CR+"," +CASH_MSG_2+"," +SUBSIDY+"," +CASH_MSG_3+"," +MONTH_BILL+"," +ARRS+"," +NET_BILL_2+"," +MONTH_1+"," +RDG_DATE_1+"," +RDG_1+"," +SURCH+"," +MONTH_2+"," +RDG_DATE_2+"," +RDG_2+"," +NET_INCL_SURCH_1+"," +MONTH_3+"," +RDG_DATE_3+"," +RDG_3+"," +MONTH_4+"," +RDG_DATE_4+"," +RDG_4+"," +MONTH_5+"," +RDG_DATE_5+"," +RDG_5+"," +MONTH_6+"," +RDG_DATE_6+"," +RDG_6+"," +AVG_1+"," +AVG_2+"," +CIR_NAME_2+"," +BILL_MSG_1+"," +BILL_MSG_2+"," +BILL_MSG_3+"," +BILL_MSG_4+"," +BILL_MSG_5+"," +SCRN_MSG+"," +BILL_MONTH_2+"," +BILL_NO_2+"," +LOC_COD_2+"," +GROUP_NO_2+"," +READER_NO_2+"," +CONS_NO_2+"," +CONS_NAME_2+"," +CHQ_DATE_2+"," +CSH_DATE_2+"," +NET_BILL_3+"," +NET_INCL_SURCH_2+"," +OLD_CONS_NO+"," +SURCHARGE_DEMAND+"," +PREV_PENDING_AMNT+"," +MTR_READER_NAME+")"
+							"INSERT INTO pre_bill_data("+DIV_NAME+"," +TARIFF+"," +LOC_CODE_1+"," +GROUP_NO_1+"," +READER_NO_1+"," +CONS_NO_1+"," +BILL_MONTH_1+"," +BILL_NO_1+"," +BILL_DATE+"," +TOT_UNITS_1+"," +CONS_NAME_1+"," +ADDR_1+"," +NET_BILL_1+"," +ADDR_2+"," +ADDR_3+"," +PHONE_1+"," +MOBILE+"," +CHQ_DATE_1+"," +CSH_DATE_1+"," +POLE+"," +METER_NO+"," +PHASE+"," +RDG_DATE+"," +CONN_LOAD+"," +LOAD_UNIT+"," +RDG_TYPE+"," +CONT_DEM+"," +MAX_DEM+"," +RDG_CURR+"," +RDG_PRE+"," +MF+"," +PF+"," +MTR_UNITS+"," +ASS_UNITS+"," +TOT_UNITS_2+"," +TOD_UNITS+"," +LOC_NAME+"," +LOC_ADDR_1+"," +ENCH+"," +LOC_ADDR_2+"," +FXCH+"," +LOC_PHONE+"," +DUTY+"," +CESS+"," +RENT+"," +OFFR_NAME+"," +ADJMT+"," +OFFR_PHONE+"," +SD_INST+"," +CAP_SCH+"," +DE_NAME+"," +PENAL_CH+"," +DE_PHONE+"," +TOD_SCH+"," +PURPOSE+"," +SEC_DEP+"," +OCH+"," +BILL_TYPE+"," +SD_DUE+"," +ADV_AMT+"," +SD_INT+"," +PRE_PYMT_HDR+"," +LF_REBATE+"," +CASH_MSG_1+"," +LOCK_CR+"," +CASH_MSG_2+"," +SUBSIDY+"," +CASH_MSG_3+"," +MONTH_BILL+"," +ARRS+"," +NET_BILL_2+"," +MONTH_1+"," +RDG_DATE_1+"," +RDG_1+"," +SURCH+"," +MONTH_2+"," +RDG_DATE_2+"," +RDG_2+"," +NET_INCL_SURCH_1+"," +MONTH_3+"," +RDG_DATE_3+"," +RDG_3+"," +MONTH_4+"," +RDG_DATE_4+"," +RDG_4+"," +MONTH_5+"," +RDG_DATE_5+"," +RDG_5+"," +MONTH_6+"," +RDG_DATE_6+"," +RDG_6+"," +AVG_1+"," +AVG_2+"," +CIR_NAME_2+"," +BILL_MSG_1+"," +BILL_MSG_2+"," +BILL_MSG_3+"," +BILL_MSG_4+"," +BILL_MSG_5+"," +SCRN_MSG+"," +BILL_MONTH_2+"," +BILL_NO_2+"," +LOC_COD_2+"," +GROUP_NO_2+"," +READER_NO_2+"," +CONS_NO_2+"," +CONS_NAME_2+"," +CHQ_DATE_2+"," +CSH_DATE_2+"," +NET_BILL_3+"," +NET_INCL_SURCH_2+"," +OLD_CONS_NO+"," +SURCHARGE_DEMAND+"," +PREV_PENDING_AMNT+"," +MTR_READER_NAME+")"
 									+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
 							Statement.RETURN_GENERATED_KEYS);
 					) {
@@ -285,7 +285,7 @@ public class BillDataDAO {
 			try(
 					Connection connection = GlobalResource.getDatasource().getConnection();
 					PreparedStatement ps = connection.prepareStatement(
-							"update bill_data set "+DIV_NAME+"=?," +TARIFF+"=?," +LOC_CODE_1+"=?," +GROUP_NO_1+"=?," +READER_NO_1+"=?," +CONS_NO_1+"=?," +BILL_MONTH_1+"=?," +BILL_NO_1+"=?," +BILL_DATE+"=?," +TOT_UNITS_1+"=?," +CONS_NAME_1+"=?," +ADDR_1+"=?," +NET_BILL_1+"=?," +ADDR_2+"=?," +ADDR_3+"=?," +PHONE_1+"=?," +MOBILE+"=?," +CHQ_DATE_1+"=?," +CSH_DATE_1+"=?," +POLE+"=?," +METER_NO+"=?," +PHASE+"=?," +RDG_DATE+"=?," +CONN_LOAD+"=?," +LOAD_UNIT+"=?," +RDG_TYPE+"=?," +CONT_DEM+"=?," +MAX_DEM+"=?," +RDG_CURR+"=?," +RDG_PRE+"=?," +MF+"=?," +PF+"=?," +MTR_UNITS+"=?," +ASS_UNITS+"=?," +TOT_UNITS_2+"=?," +TOD_UNITS+"=?," +LOC_NAME+"=?," +LOC_ADDR_1+"=?," +ENCH+"=?," +LOC_ADDR_2+"=?," +FXCH+"=?," +LOC_PHONE+"=?," +DUTY+"=?," +CESS+"=?," +RENT+"=?," +OFFR_NAME+"=?," +ADJMT+"=?," +OFFR_PHONE+"=?," +SD_INST+"=?," +CAP_SCH+"=?," +DE_NAME+"=?," +PENAL_CH+"=?," +DE_PHONE+"=?," +TOD_SCH+"=?," +PURPOSE+"=?," +SEC_DEP+"=?," +OCH+"=?," +BILL_TYPE+"=?," +SD_DUE+"=?," +ADV_AMT+"=?," +SD_INT+"=?," +PRE_PYMT_HDR+"=?," +LF_REBATE+"=?," +CASH_MSG_1+"=?," +LOCK_CR+"=?," +CASH_MSG_2+"=?," +SUBSIDY+"=?," +CASH_MSG_3+"=?," +MONTH_BILL+"=?," +ARRS+"=?," +NET_BILL_2+"=?," +MONTH_1+"=?," +RDG_DATE_1+"=?," +RDG_1+"=?," +SURCH+"=?," +MONTH_2+"=?," +RDG_DATE_2+"=?," +RDG_2+"=?," +NET_INCL_SURCH_1+"=?," +MONTH_3+"=?," +RDG_DATE_3+"=?," +RDG_3+"=?," +MONTH_4+"=?," +RDG_DATE_4+"=?," +RDG_4+"=?," +MONTH_5+"=?," +RDG_DATE_5+"=?," +RDG_5+"=?," +MONTH_6+"=?," +RDG_DATE_6+"=?," +RDG_6+"=?," +AVG_1+"=?," +AVG_2+"=?," +CIR_NAME_2+"=?," +BILL_MSG_1+"=?," +BILL_MSG_2+"=?," +BILL_MSG_3+"=?," +BILL_MSG_4+"=?," +BILL_MSG_5+"=?," +SCRN_MSG+"=?," +BILL_MONTH_2+"=?," +BILL_NO_2+"=?," +LOC_COD_2+"=?," +GROUP_NO_2+"=?," +READER_NO_2+"=?," +CONS_NO_2+"=?," +CONS_NAME_2+"=?," +CHQ_DATE_2+"=?," +CSH_DATE_2+"=?," +NET_BILL_3+"=?," +NET_INCL_SURCH_2+"=?," +OLD_CONS_NO+"=?," +SURCHARGE_DEMAND+"=?," +PREV_PENDING_AMNT+"=?," +MTR_READER_NAME+"=?"
+							"update pre_bill_data set "+DIV_NAME+"=?," +TARIFF+"=?," +LOC_CODE_1+"=?," +GROUP_NO_1+"=?," +READER_NO_1+"=?," +CONS_NO_1+"=?," +BILL_MONTH_1+"=?," +BILL_NO_1+"=?," +BILL_DATE+"=?," +TOT_UNITS_1+"=?," +CONS_NAME_1+"=?," +ADDR_1+"=?," +NET_BILL_1+"=?," +ADDR_2+"=?," +ADDR_3+"=?," +PHONE_1+"=?," +MOBILE+"=?," +CHQ_DATE_1+"=?," +CSH_DATE_1+"=?," +POLE+"=?," +METER_NO+"=?," +PHASE+"=?," +RDG_DATE+"=?," +CONN_LOAD+"=?," +LOAD_UNIT+"=?," +RDG_TYPE+"=?," +CONT_DEM+"=?," +MAX_DEM+"=?," +RDG_CURR+"=?," +RDG_PRE+"=?," +MF+"=?," +PF+"=?," +MTR_UNITS+"=?," +ASS_UNITS+"=?," +TOT_UNITS_2+"=?," +TOD_UNITS+"=?," +LOC_NAME+"=?," +LOC_ADDR_1+"=?," +ENCH+"=?," +LOC_ADDR_2+"=?," +FXCH+"=?," +LOC_PHONE+"=?," +DUTY+"=?," +CESS+"=?," +RENT+"=?," +OFFR_NAME+"=?," +ADJMT+"=?," +OFFR_PHONE+"=?," +SD_INST+"=?," +CAP_SCH+"=?," +DE_NAME+"=?," +PENAL_CH+"=?," +DE_PHONE+"=?," +TOD_SCH+"=?," +PURPOSE+"=?," +SEC_DEP+"=?," +OCH+"=?," +BILL_TYPE+"=?," +SD_DUE+"=?," +ADV_AMT+"=?," +SD_INT+"=?," +PRE_PYMT_HDR+"=?," +LF_REBATE+"=?," +CASH_MSG_1+"=?," +LOCK_CR+"=?," +CASH_MSG_2+"=?," +SUBSIDY+"=?," +CASH_MSG_3+"=?," +MONTH_BILL+"=?," +ARRS+"=?," +NET_BILL_2+"=?," +MONTH_1+"=?," +RDG_DATE_1+"=?," +RDG_1+"=?," +SURCH+"=?," +MONTH_2+"=?," +RDG_DATE_2+"=?," +RDG_2+"=?," +NET_INCL_SURCH_1+"=?," +MONTH_3+"=?," +RDG_DATE_3+"=?," +RDG_3+"=?," +MONTH_4+"=?," +RDG_DATE_4+"=?," +RDG_4+"=?," +MONTH_5+"=?," +RDG_DATE_5+"=?," +RDG_5+"=?," +MONTH_6+"=?," +RDG_DATE_6+"=?," +RDG_6+"=?," +AVG_1+"=?," +AVG_2+"=?," +CIR_NAME_2+"=?," +BILL_MSG_1+"=?," +BILL_MSG_2+"=?," +BILL_MSG_3+"=?," +BILL_MSG_4+"=?," +BILL_MSG_5+"=?," +SCRN_MSG+"=?," +BILL_MONTH_2+"=?," +BILL_NO_2+"=?," +LOC_COD_2+"=?," +GROUP_NO_2+"=?," +READER_NO_2+"=?," +CONS_NO_2+"=?," +CONS_NAME_2+"=?," +CHQ_DATE_2+"=?," +CSH_DATE_2+"=?," +NET_BILL_3+"=?," +NET_INCL_SURCH_2+"=?," +OLD_CONS_NO+"=?," +SURCHARGE_DEMAND+"=?," +PREV_PENDING_AMNT+"=?," +MTR_READER_NAME+"=?"
 									+"where id = ?");
 					) {
 			    ps.setString(1, billData.getDivName()); 
@@ -436,7 +436,7 @@ public class BillDataDAO {
 		try(
 				Connection connection = GlobalResource.getDatasource().getConnection();
 				PreparedStatement ps = connection.prepareStatement(
-						"select * from bill_data where "+ID+" =?");){
+						"select * from pre_bill_data where "+ID+" =?");){
 			ps.setInt(1,id);
 			ResultSet rs = ps.executeQuery();
 			billDataList = mapper(rs);
@@ -453,7 +453,7 @@ public class BillDataDAO {
 		try(
 				Connection connection = GlobalResource.getDatasource().getConnection();
 				PreparedStatement ps = connection.prepareStatement(
-						"select * from bill_data where "+DIV_NAME+" like '%DIV_NAME%'");){
+						"select * from pre_bill_data where "+DIV_NAME+" like '%DIV_NAME%'");){
 			//ps.setInt(1,"DIV_NAME");
 			ResultSet rs = ps.executeQuery();
 			billDataList = mapper(rs);
@@ -472,7 +472,7 @@ public class BillDataDAO {
 		try(
 				Connection connection = GlobalResource.getDatasource().getConnection();
 				PreparedStatement ps = connection.prepareStatement(
-						"select * from bill_data where "+DIV_NAME+" not like '%DIV_NAME%'");){
+						"select * from pre_bill_data where "+DIV_NAME+" not like '%DIV_NAME%'");){
 			rs = ps.executeQuery();
 			billDataList = mapper(rs);
 		} catch (SQLException e) {
@@ -487,7 +487,7 @@ public class BillDataDAO {
 		try(
 				Connection connection = GlobalResource.getDatasource().getConnection();
 				PreparedStatement ps = connection.prepareStatement(
-						"delete from bill_data");){
+						"delete from pre_bill_data");){
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -499,7 +499,7 @@ public class BillDataDAO {
 		try(
 				Connection connection = GlobalResource.getDatasource().getConnection();
 				PreparedStatement ps = connection.prepareStatement(
-						"select * from bill_data where "+LOC_CODE_1+" = ? and "+GROUP_NO_1+" = ? and "+BILL_MONTH_1+" = ?");){
+						"select * from pre_bill_data where "+LOC_CODE_1+" = ? and "+GROUP_NO_1+" = ? and "+BILL_MONTH_1+" = ?");){
 			ps.setString(1, locationCode);
 			ps.setString(1, groupNo);
 			ps.setString(1, date);

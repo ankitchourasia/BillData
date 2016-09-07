@@ -25,26 +25,22 @@ import com.dwls.dao.DataRefDAO;
  */
 public class BillFileParser {
 
-	public void readFile(String filePath) {
+	public void readFile(String filePath) throws IOException {
 		File file = new File(filePath);
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(
 				new FileInputStream(file),"UTF-8"));) {
 			String line = "";
 			BillDataDAO billDataDAO = new BillDataDAO();
 			billDataDAO.deleteAll();
-			try {
 				while ((line = br.readLine()) != null) {
 					
 					String[] fields = line.split("\\t");
-					BillData billData = billDataMapper(fields);
-					billDataDAO.insert(billData);
+					if(fields != null && fields.length == 115){
+						BillData billData = billDataMapper(fields);
+						billDataDAO.insert(billData);
+					}
+				
 				}
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		} catch (IOException e1) {
-			e1.printStackTrace();
 		}
 	}
 
@@ -54,33 +50,30 @@ public class BillFileParser {
 		DataRef dataRef = null;
 		ArrayList<BillData> billDataList = billDataDAO.getAll();
 		for(BillData billData: billDataList){
-			//System.out.println(billData.getConsNo1());
 			dataRef= dataRefDAO.getByConsNo(billData.getConsNo1());
+			
 			if(dataRef != null && billData.getDivName()!="DIV_NAME"){
-				billData.setBillMsg3(dataRef.getGroupNo()+"X"+dataRef.getRdNo());
+				billData.setBillMsg5(dataRef.getGroupNo()+" X "+dataRef.getRdNo());
 			}
 			billDataDAO.update(billData);
 		}
 
 	}
 
-	public void writeBillFile(String filePath) {
+	public void writeBillFile(String filePath) throws IOException {
 		BillDataDAO billDataDAO = new BillDataDAO();
 		ArrayList<BillData> billDataList = billDataDAO.getAll();
 		BillData billDataHeader = billDataDAO.getByBillDataHeader();
 		Writer out = null;
 		try {
 			out = new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream(
-							"updated "+filePath),
+					new FileOutputStream(filePath),
 					"UTF-8"));
 			out.write(billDataToStringMapper(billDataHeader)+"\n");
 			for (BillData billData : billDataList) {
 					out.write(billDataToStringMapper(billData) +"\n");
 			}
-		} catch (IOException e) {
-			System.out.println("Error: " + e.getMessage());
-		} finally {
+		}  finally {
 			try {
 				if (out != null) {
 					out.close();
@@ -96,9 +89,9 @@ public class BillFileParser {
 
 	/*public static void main(String[] args) {
 		BillFileParser read = new BillFileParser();
-		//read.readFile("C:\\Users\\lenovo\\Desktop\\dwls\\bill gr 4 aug 16\\ccnb_gr_4_aug_16_ndlf.text");
+		read.readFile("C:\\Users\\lenovo\\Desktop\\bill file\\GPH NonDomestic.csv");
 		read.updateBillFile();
-		//read.writeBillFile();
+		read.writeBillFile("GPH NonDomestic.csv");
 	}*/
 
 	public BillData billDataMapper(String[] line) {
