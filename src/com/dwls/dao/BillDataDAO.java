@@ -472,7 +472,7 @@ public class BillDataDAO {
 		try(
 				Connection connection = GlobalResource.getDatasource().getConnection();
 				PreparedStatement ps = connection.prepareStatement(
-						"select * from pre_bill_data where "+DIV_NAME+" not like '%DIV_NAME%'");){
+						"select * from pre_bill_data where "+DIV_NAME+" not like '%DIV_NAME%' order by "+READER_NO_1+"::integer");){
 			rs = ps.executeQuery();
 			billDataList = mapper(rs);
 		} catch (SQLException e) {
@@ -516,6 +516,7 @@ public class BillDataDAO {
 	public ArrayList<BillData> mapper(ResultSet rs){
 		ArrayList<BillData> billDataList = new ArrayList<BillData>();
 		try {
+			int i = 0;
 			while(rs.next()){
 				BillData billData = new BillData();
 				billData.setId(rs.getInt(1));
@@ -634,7 +635,8 @@ public class BillDataDAO {
 				billData.setSurchargeDemand(rs.getString(114)); 
 				billData.setPrevPendingAmnt(rs.getString(115)); 
 				billData.setMtrReaderName(rs.getString(116));
-				billDataList.add(billData);
+				billDataList.add(i, billData);
+				i++;
 			}
 		} catch (SQLException e) {
 			System.out.println("Exception in class : BillDataDAO : method : [mapper(ResultSet)] "
